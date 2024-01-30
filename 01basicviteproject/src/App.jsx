@@ -1,11 +1,10 @@
 
-
+import Soft from "./Soft.jsx"
 function App() {
-  
-
   return (
-   <h1>| Hello React with Vite | RG |</h1>
+   <Soft />
   )
 }
+
 
 export default App
