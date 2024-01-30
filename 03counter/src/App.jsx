@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -10,6 +8,22 @@ function App() {
     if(counter <  20)
     {
       setCounter(counter + 1)
+
+      // interview qeution => 
+      /* 
+      setCounter(counter + 1) 
+      setCounter(counter + 1) 
+      setCounter(counter + 1) 
+      setCounter(counter + 1)  
+      // OutPut is =>  16 
+      */
+
+     /* setCounter((prevCounter) => prevCounter + 1 )
+      setCounter((prevCounter) => prevCounter + 1 )
+      setCounter((prevCounter) => prevCounter + 1 )
+      setCounter((prevCounter) => prevCounter + 1 )
+      // Output is => 19
+      */
     }
   }
   const decreaseValue = () => {
