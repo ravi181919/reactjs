@@ -4,13 +4,13 @@ import { TodoForm, TodoItem } from "./components";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
-  const addTodo = (todos) => {
-    setTodos((prev) => [...prev, { id: Date.now(), todos }]);
+  const addTodo = (todo) => {
+    setTodos((prev) => [{ id: Date.now(), ...todo }, ...prev]);
   };
 
-  const updateTodo = (id, todos) => {
+  const updateTodo = (id, todo) => {
     setTodos((prev) =>
-      prev.map((prevTodo) => (prevTodo.id === id ? todos : prevTodo))
+      prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
     );
   };
 
@@ -34,17 +34,16 @@ const App = () => {
 
   useEffect(() => {
     const localStorageTodos = JSON.parse(localStorage.getItem("todos"));
-    localStorageTodos &&
+    {
+      /*** first type:
+         localStorageTodos &&
       localStorageTodos.length > 0 &&
       setTodos(localStorageTodos);
-
-    {
-      /** secont type 
+*/
       if (localStorageTodos && localStorageTodos.length > 0) {
-         setTodos(localStorageTodos);
-      } 
-      */
-    } 
+        setTodos(localStorageTodos);
+      }
+    }
   }, []);
   return (
     <TodoContextProvider
@@ -55,13 +54,15 @@ const App = () => {
           <h1 className="text-2xl font-bold text-center mb-8 mt-2">
             Manage Your Todos
           </h1>
-          <div className="mb-4"><TodoForm /></div>
+          <div className="mb-4">
+            <TodoForm />
+          </div>
           <div className="flex flex-wrap gap-y-3">
-           {todos.map((todo) => (
-            <div key={todo.id} className="w-full">
-              <TodoItem todo={todo} />
-            </div>
-           ))}
+            {todos.map((to) => (
+              <div key={to.id} className="w-full">
+                <TodoItem todo={to} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
