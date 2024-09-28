@@ -12,7 +12,6 @@ const App = () => {
         </h1>
       </div>
       <AddTodos />
-
       <Todos />
     </div>
   );
