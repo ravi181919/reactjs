@@ -1,11 +1,9 @@
 import React from "react";
 import AddTodos from "./components/AddTodos";
 import Todos from "./components/Todos";
-import { useSelector } from "react-redux";
 
 
 const App = () => {
-  const todos = useSelector(state => state.todos)
   return (
     <div className="bg-zinc-600 h-screen w-full flex items-center justify-start flex-col ">
       <div className="w-full px-10 py-5">
