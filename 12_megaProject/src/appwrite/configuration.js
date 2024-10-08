@@ -1,8 +1,7 @@
-import e from "express";
 import config from "../config/config";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
-export class Service {
+export class AuthService {
   client = new Client();
   databases;
   bucket;
@@ -117,6 +116,6 @@ export class Service {
   
 }
 
-const service = new Service();
+const appwriteService = new AuthService();
 
-export default service;
+export default appwriteService;

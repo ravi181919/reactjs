@@ -6,7 +6,7 @@ import authService from "./appwrite/auth";
 import { Footer, Header } from "./components";
 const App = () => {
   const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     authService
       .getCurrentUser()

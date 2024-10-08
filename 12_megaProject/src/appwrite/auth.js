@@ -12,7 +12,7 @@ export class AuthService {
     this.account = new Account(this.client);
   }
 
-  async creatAccount({ email, password, name }) {
+  async createAccount({ email, password, name }) {
     try {
       const userAccount = await this.account.create(
         ID.unique,
@@ -21,8 +21,8 @@ export class AuthService {
         name
       );
       if (userAccount) {
-        // call another method: for directly login when, is email and password 
-        return this.login({email, password})
+        // call another method: for directly login when, is email and password
+        return this.login({ email, password });
       } else {
         return userAccount;
       }
@@ -31,29 +31,29 @@ export class AuthService {
     }
   }
 
-  async login ({email, password}) {
+  async login({ email, password }) {
     try {
-        return await this.account.createEmailPasswordSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      throw error  
+      throw error;
     }
   }
 
-  async getCurrentUser(){
+  async getCurrentUser() {
     try {
         return await this.account.get();
     } catch (error) {
-        console.log('Appwrite :: getCurrentUser', error);
+        console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
     return null;
-  }
+}
+
 
   async logout() {
     try {
-        return await this.account.deleteSessions();
+      return await this.account.deleteSessions();
     } catch (error) {
-        console.log('Appwrite :: logout', error);
-        
+      console.log("Appwrite :: logout", error);
     }
   }
 }
