@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
 import { Footer, Header } from "./components";
+import { Outlet } from "react-router-dom";
 const App = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -24,7 +25,9 @@ const App = () => {
     <div className="min-h-screen w-full flex flex-wrap content-between bg-zinc-800 text-white">
       <div className="w-full block">
         <Header />
-        <main></main>
+        <main className="flex flex-col items-center w-full py-8 text-zinc-300 bg-zinc-800">
+        TODO:  <Outlet />
+        </main>
         <Footer />
       </div>
     </div>
