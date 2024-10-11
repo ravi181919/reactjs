@@ -1,4 +1,4 @@
-import config from "../config/config";
+import config from "../config/config.js";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class AuthService {
@@ -14,12 +14,13 @@ export class AuthService {
     this.bucket = new Storage(this.client);
   }
 
-  async creatPost({ title, slug, content, featuredImage, status, userId }) {
+  async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
       return await this.databases.createDocument(
         config.appWriteDatabaseId,
         config.appWriteCollectionId,
-        { slug, title, content, featuredImage, status, userId }
+        slug,
+        {title, content, featuredImage, status, userId }
       );
     } catch (error) {
       console.log("Appwrite configuration :: creatPost", error);
@@ -38,7 +39,7 @@ export class AuthService {
           featuredImage,
           status,
         }
-      );
+      )
     } catch (error) {
       console.log("Appwrite configuration :: updatePost", error);
     }
@@ -50,7 +51,7 @@ export class AuthService {
         config.appWriteDatabaseId,
         config.appWriteCollectionId,
         slug
-      );
+      )
       return true;
     } catch (error) {
       console.log("Appwrite configuration :: deletePost", error);
@@ -64,7 +65,7 @@ export class AuthService {
         config.appWriteDatabaseId,
         config.appWriteCollectionId,
         slug
-      );
+      )
     } catch (error) {
       console.log("Appwrite configuration :: getPost", error);
       return false;
@@ -76,8 +77,8 @@ export class AuthService {
       return await this.databases.listDocuments(
         config.appWriteDatabaseId,
         config.appWriteCollectionId,
-        queries
-      );
+        queries,
+      )
     } catch (error) {
       console.log("Appwrite configuration :: getPosts", error);
       return false;
@@ -92,7 +93,7 @@ export class AuthService {
         config.appWriteBucketId,
         ID.unique(),
         file
-      );
+      )
     } catch (error) {
       console.log("Appwrite configuration :: uploadFile", error);
       return false;
@@ -101,8 +102,8 @@ export class AuthService {
 
   async deleteFile(fileId) {
     try {
-      await this.bucket.deleteFile(config.appWriteBucketId, fileId);
-      return true;
+      await this.bucket.deleteFile(config.appWriteBucketId, fileId)
+      return true
     } catch (error) {
       console.log("Appwrite configuration :: deleteFile", error);
       return false;

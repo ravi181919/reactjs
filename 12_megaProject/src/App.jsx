@@ -31,7 +31,9 @@ const App = () => {
         <Footer />
       </div>
     </div>
-  ) : null;
+  ) : <div className="w-full h-screen flex items-center justify-center bg-zinc-900 text-white">
+    <h1 className="text-3xl font-semibold leading-none select-none">Loading...</h1>
+  </div>;
 };
 
 export default App;
